@@ -7,7 +7,7 @@ class StaticStyle extends StatefulWidget {
   final Widget child;
   static StaticStyleState of(BuildContext context) {
     final StyleInherited style =
-        context.inheritFromWidgetOfExactType(StyleInherited);
+        context.dependOnInheritedWidgetOfExactType<StyleInherited>();
     return style?.data;
   }
 
@@ -42,7 +42,7 @@ class StaticStyleState extends State<StaticStyle> {
     print('static style build');
     if (widget.inheritFromParent) {
       final parentData = StaticStyle.of(context);
-      if(parentData != null) {
+      if (parentData != null) {
         this.style.inject(parentData.style);
       }
     }
